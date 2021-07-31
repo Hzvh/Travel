@@ -1,0 +1,2 @@
+# Travel
+基于MVC模式设计，使用Servlet+html制作静态页面，同时使用AJAX和Jquery技术从数据库获取数据动态展示网页详细,用阿里巴巴的druid连接池和Mysql数据库进行连接
