@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人主页</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" href="css/register.css">
+    <!--导入jquery-->
+    <script src="js/jquery-3.3.1.js"></script>
+    <style>
+        div{
+            margin: 0;
+        }
+    </style>
+
+</head>
+<body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<!--引入头部-->
+<div id="header"></div>
+
+<!--------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------->
+
+<script>
+    $(function () {
+        $.get("findUserServlet", {}, function (data) {
+
+            $("#td_username").html(data.username)
+            $("#label_name").html(data.name)
+            $("#label_birthday").html(data.birthday)
+            $("#label_sex").html(data.sex)
+            $("#label_telephone").html(data.telephone)
+            $("#label_email").html(data.email)
+        })
+    })
+</script>
+
+<div class="rg_layout">
+    <div class="rg_form clearfix">
+        <!--头像和用户名-->
+        <table style="text-align: left;padding: 0;color: #ffc900;">
+            <tr>
+                <td><img src="images/touxiang.png" alt="头像" width="160" height="160" class="img-circle" style="margin: 0"></td>
+                <td style="width: 50px">&nbsp;&nbsp;&nbsp;</td>
+                <td id="td_username" style="font-size: 40px;">username</td>
+            </tr>
+        </table>
+
+        <form action="updateUserInfoServlet">
+            <!--信息-->
+            <table class="table">
+                <tr class="active">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <label>真实姓名</label>
+                    </td>
+                    <td id="label_name"></td>
+                    <td><input type="text" class="form-control" name="name" placeholder="new name"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr class="success">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <label>出生日期</label>
+                    </td>
+                    <td id="label_birthday"> </td>
+                    <td><input type="text" class="form-control" name="birthday" placeholder="new birthday"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr class="warning">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <label>性别</label>
+                    </td>
+                    <td id="label_sex"></td>
+                    <td>
+                        <label class="radio-inline">
+                            <input type="radio" id="sex" name="sex" value="男" checked>男
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="sex" value="女">女
+                        </label>
+                    </td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr class="danger">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <label>电话号码</label>
+                    </td>
+                    <td id="label_telephone"></td>
+                    <td><input type="text" class="form-control" name="telephone" placeholder="new phone number"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+                <tr class="info">
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                    <td>
+                        <label>Email</label>
+                    </td>
+                    <td id="label_email"></td>
+                    <td><input type="text" class="form-control" name="email" placeholder="new Email"></td>
+                    <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                </tr>
+            </table>
+            <!--修改个人信息和密码-->
+            <div style="padding-top: 10px">
+                <center>
+                    <table>
+                        <tr>
+                            <td><b>请输入您的密码</b></td>
+                            <td width="30px"></td>
+                            <td><input type="text" name="password" class="form-control" placeholder="password"></td>
+                            <td width="30px"></td>
+                            <td>
+                                <a href="test.html">
+                                    <button type="submit" class="btn btn-success">确认修改</button>
+                                </a>
+                            </td>
+                        </tr>
+                    </table>
+                </center>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<!--------------------------------------------------------------------------------------->
+<!--------------------------------------------------------------------------------------->
+
+<!--引入尾部-->
+<div id="footer"></div>
+<!--导入布局js，共享header和footer-->
+<script type="text/javascript" src="js/include.js"></script>
+
+</body>
+</html>

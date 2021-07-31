@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>个人主页</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" href="css/register.css">
+    <!--导入jquery-->
+    <script src="js/jquery-3.3.1.js"></script>
+    <style>
+        div{
+            margin: 0;
+        }
+    </style>
+
+</head>
+<body>
+<!-- jQuery (Bootstrap 的所有 JavaScript 插件都依赖 jQuery，所以必须放在前边) -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@1.12.4/dist/jquery.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
+<!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha384-aJ21OjlMXNL5UyIl/XNwTMqvzeRMZH2w8c5cRVpzpU8Y5bApTppSuUkhZXN0VxHd" crossorigin="anonymous"></script>
+
+<!--引入头部-->
+<div id="header"></div>
+
+
+<script>
+    $(function () {
+        $.get("findUserServlet", {}, function (data) {
+
+            $("#td_username").html(data.username)
+            $("#label_name").html(data.name)
+            $("#label_birthday").html(data.birthday)
+            $("#label_sex").html(data.sex)
+            $("#label_telephone").html(data.telephone)
+            $("#label_email").html(data.email)
+            //document.write(msg);
+
+        })
+    })
+</script>
+
+
+<div class="rg_layout">
+    <div class="rg_form clearfix">
+        <!--头像和用户名-->
+        <table style="text-align: left;padding: 0;color: #ffc900;">
+            <tr>
+                <td>&nbsp;&nbsp;&nbsp;<img src="images/touxiang.png" alt="头像" width="160" height="160" class="img-circle" style="margin: 0"></td>
+                <td id="td_username" style="font-size: 40px;">&nbsp;&nbsp;&nbsp;username</td>
+            </tr>
+        </table>
+
+        <!--信息-->
+        <table class="table">
+
+            <tr class="active">
+                <td></td>
+                <td>
+                    <label>真实姓名</label>
+                </td>
+                <td id="label_name">无</td>
+            </tr>
+            <tr class="success">
+                <td></td>
+                <td>
+                    <label>出生日期</label>
+                </td>
+                <td id="label_birthday">无</td>
+            </tr>
+            <tr class="warning">
+                <td></td>
+                <td>
+                    <label>性别</label>
+                </td>
+                <td id="label_sex">无</td>
+            </tr>
+            <tr class="danger">
+                <td></td>
+                <td>
+                    <label>电话号码</label>
+                </td>
+                <td id="label_telephone">无</td>
+            </tr>
+            <tr class="info">
+                <td></td>
+                <td>
+                    <label>Email</label>
+                </td>
+                <td id="label_email">无</td>
+            </tr>
+        </table>
+
+        <!--修改个人信息和密码-->
+        <div style="padding-top: 30px;padding-bottom: 50px">
+            <center>
+                <a href="updateUserInfo.html">
+                    <button type="button" class="btn btn-success">修改个人信息</button>
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <!--<a href="test.html">-->
+                <!--<button type="button" class="btn btn-success">修改密码</button>-->
+                <!--</a>-->
+            </center>
+        </div>
+    </div>
+</div>
+
+
+<!--引入尾部-->
+<div id="footer"></div>
+<!--导入布局js，共享header和footer-->
+<script type="text/javascript" src="js/include.js"></script>
+
+
+<script>
+    /**显示鼠标点击出现小红心*/
+    ! function(e, t, a) {
+        function r() {
+            for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[
+                e].scale += 0.004, s[e].alpha -= 0.013, s[e].el.style.cssText = 'left:' + s[e].x + 'px;top:' + s[e].y +
+                'px;opacity:' + s[e].alpha + ';transform:scale(' + s[e].scale + ',' + s[e].scale + ') rotate(45deg);background:' +
+                s[e].color + ';z-index:99999');
+            requestAnimationFrame(r)
+        }
+
+        function n() {
+            var t = 'function' == typeof e.onclick && e.onclick;
+            e.onclick = function(e) {
+                t && t(),
+                    o(e)
+            }
+        }
+
+        function o(e) {
+            var a = t.createElement('div');
+            a.className = 'heart',
+                s.push({
+                    el: a,
+                    x: e.clientX - 5,
+                    y: e.clientY - 5,
+                    scale: 1,
+                    alpha: 2,
+                    color: c()
+                }),
+                t.body.appendChild(a)
+        }
+
+        function i(e) {
+            var a = t.createElement('style');
+            a.type = 'text/css';
+            try {
+                a.appendChild(t.createTextNode(e))
+            } catch (t) {
+                a.styleSheet.cssText = e
+            }
+            t.getElementsByTagName('head')[0].appendChild(a)
+        }
+
+        function c() {
+            return 'rgb(' + ~~(255 * Math.random()) + ',' + ~~(255 * Math.random()) + ',' + ~~(255 * Math.random()) + ')'
+        }
+        var s = [];
+        e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame ||
+            e.oRequestAnimationFrame || e.msRequestAnimationFrame || function(e) {
+                setTimeout(e, 1000 / 60)
+            },
+            i(
+                '.heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: \'\';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}'
+            ),
+            n(),
+            r()
+
+    }(window, document);
+</script>
+</body>
+</html>
